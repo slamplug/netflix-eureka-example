@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: spring-boot-service-app
+
+server:
+  port: ${vcap.application.port:8060}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.eureka-service.credentials.uri:http://127.0.0.1:8761}/eureka/
+  vipAddress: sampleservice.mydomain.net
+
+---
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    hostname: ${APPLICATION_DOMAIN}
+    nonSecurePort: 80
